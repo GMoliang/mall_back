@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nuc.gml.mall.dao.CommentDOMapper">
+
+    <!--                     文章评论结果返回集                    -->
+    <resultMap id="CommentMap" type="nuc.gml.mall.dataobject.CommentDO">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="commentTime" column="comment_time"/>
+        <result property="likeCounts" column="like_counts"/>
+        <result property="state" column="state"/>
+        <result property="itemId" column="item_id"/>
+        <result property="parentId" column="parent_id"/>
+        <association property="reviewerUser" javaType="nuc.gml.mall.dataobject.SysUserDO">
+            <id property="userId" column="user_id"/>
+            <result property="username" column="reviewer_nick"/>
+        </association>
+        <association property="replyUser" javaType="nuc.gml.mall.dataobject.SysUserDO">
+            <result property="username" column="reply_nick"/>
+        </association>
+    </resultMap>
+    <!--文章id  父评论id为空 查询结果  结果赋值到reviewer中-->
+    <select id="selCommentReviewer"  resultMap="CommentMap">
+        SELECT mc.*,mu.username as reviewer_nick
+        FROM `mall_comment` AS mc,`sys_user` AS mu
+        WHERE mc.user_id = mu.user_id AND mc.item_id = #{itemId} AND ISNULL(mc.parent_id) AND mc.state = 0
+        ORDER BY mc.comment_time DESC
+    </select>
+
+
+    <!--查询当前文章评论下的子评论-->
+    <select id="selCommentReply" resultMap="CommentMap">
+        SELECT mc.*, mu.username as reviewer_nick ,(
+	  	  SELECT mup.username FROM `mall_comment` AS mcp,`sys_user` AS mup
+	      WHERE mcp.user_id = mup.user_id AND mcp.id = mc.parent_id ) AS reply_nick
+        FROM `mall_comment` AS mc,`sys_user` AS mu
+	    WHERE mc.user_id = mu.user_id AND mc.item_id =#{itemId} AND mc.parent_id = #{parentId} AND mc.state = 0 ORDER BY mc.comment_time ASC
+    </select>
+
+
+    <!--插入评论-->
+    <!--从reviewerUser中提取评论人信息-->
+    <insert id="insComment" parameterType="nuc.gml.mall.dataobject.CommentDO">
+        INSERT INTO `mall_comment` VALUES (#{id},#{content},#{commentTime},#{likeCounts},0,#{reviewerUser.userId},#{itemId},#{parentId})
+    </insert>
+
+
+
+</mapper>

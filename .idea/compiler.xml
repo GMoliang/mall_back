@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mall" />
+        <module name="mall-back" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="renren-generator" target="1.8" />
+      <module name="test" target="1.8" />
+      <module name="untitled" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mall" options="-parameters" />
+      <module name="mall-back" options="-parameters" />
+      <module name="nong-mall" options="-parameters" />
+      <module name="renren-generator" options="-parameters" />
+      <module name="test" options="" />
+      <module name="untitled" options="-parameters" />
+    </option>
+  </component>
+</project>

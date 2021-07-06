@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nuc.gml.mall.dao.SpuDOMapper">
+  <resultMap id="BaseResultMap" type="nuc.gml.mall.dataobject.SpuDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="cid1" jdbcType="INTEGER" property="cid1" />
+    <result column="cid2" jdbcType="INTEGER" property="cid2" />
+    <result column="cid3" jdbcType="INTEGER" property="cid3" />
+    <result column="main_image" jdbcType="VARCHAR" property="mainImage" />
+    <result column="sub_images" jdbcType="VARCHAR" property="subImages" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="spec_template" jdbcType="VARCHAR" property="specTemplate" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+
+</mapper>
